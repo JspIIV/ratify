@@ -1,0 +1,21 @@
+{
+  "network": "genlayer testnet bradbury phase 2",
+  "chain_id": 4221,
+  "testusd": {
+    "address": "0x1f8D72793a8265f903AD35eD4ea5A73aE085b6E1",
+    "tx": "0x78bb214b8c332b3625c16906eef5283aced1c59e05d970ae845ca6ec99f50899",
+    "compiler": "0.8.36+commit.8a079791.Emscripten.clang"
+  },
+  "agenticcommerce": {
+    "address": "0x0bB04345087986195c493D715EED5aaCBEcCB4e8",
+    "tx": "0xe100b427e6af90d92e32293d1f92761ca7b3db0b62566aaf817c41824f22bb6f",
+    "compiler": "0.8.36+commit.8a079791.Emscripten.clang"
+  },
+  "ratify": {
+    "address": "0x926985C53a801A1B5732930A5322fEE8918EbfAA",
+    "tx": "0x183e876459eea344fadf8a94f62996942df804b89eb14a9dcdc686a04e7baa84"
+  },
+  "address": "0x926985C53a801A1B5732930A5322fEE8918EbfAA",
+  "tx": "0x183e876459eea344fadf8a94f62996942df804b89eb14a9dcdc686a04e7baa84",
+  "deployed_at": "2026-11-07T10:54:01.363Z"
+}

@@ -1,0 +1,20 @@
+{
+  "name": "ratify",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Ratify: the evaluator for ERC-8183 jobs, as a GenLayer Intelligent Contract that pays or refunds the escrow itself",
+  "type": "module",
+  "license": "AGPL-3.0-or-later",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/JspIIV/ratify.git"
+  },
+  "dependencies": {
+    "ethers": "^6.17.0",
+    "genlayer-js": "2.0.0-rc.2",
+    "solc": "0.8.36"
+  },
+  "scripts": {
+    "test": "python tests/ratify_rules.py"
+  }
+}

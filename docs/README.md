@@ -1,0 +1,1 @@
+Test deliverables for the Ratify proof. Each job on the escrow commits to the sha256 of one of these files, and Ratify refuses any content that does not hash to it. The bytes matter, so these files are stored exactly, with no line ending conversion.
