@@ -1,25 +1,25 @@
 {
   "transcript": [
     "Ratify, proven on GenLayer Bradbury",
-    "  Ratify 0x926985C53a801A1B5732930A5322fEE8918EbfAA | ERC-8183 escrow 0x0bB04345087986195c493D715EED5aaCBEcCB4e8 | tUSD 0x1f8D72793a8265f903AD35eD4ea5A73aE085b6E1 on GenLayer Chain (4221)",
+    "  Ratify 0xA0c6d7551a3953BB55dB067308C9280b4dff3b8e | ERC-8183 escrow 0x0bB04345087986195c493D715EED5aaCBEcCB4e8 | tUSD 0x1f8D72793a8265f903AD35eD4ea5A73aE085b6E1 on GenLayer Chain (4221)",
     "  client padv 0x80519c53f10d731e4ff83a7d9acd69cf98da6258 | provider ppub 0x0b57877ec84d96b672cd47d8ea4424283fdb9f6c | stranger pchg 0xbdb591cddd787956a4fb17a8f4c325366525efd2",
-    "  job #1 (A): funded with 100 tUSD, submitted good.txt as 0x606ba5dd3722b1f4...",
-    "  job #2 (B): funded with 100 tUSD, submitted off.txt as 0x4388f55909363541...",
-    "  job #3 (C): funded with 100 tUSD, submitted pushy_poor.txt as 0x80431740fd7a31e4...",
-    "  job #4 (D): funded with 100 tUSD, submitted pushy_good.txt as 0xa1a8fd12cf498eb8...",
-    "  job #5 (E): funded with 100 tUSD, submitted a file never published as 0x85050b3353aa9c98...",
+    "  job #6 (A): funded with 100 tUSD, submitted good.txt as 0x606ba5dd3722b1f4...",
+    "  job #7 (B): funded with 100 tUSD, submitted off.txt as 0x4388f55909363541...",
+    "  job #8 (C): funded with 100 tUSD, submitted pushy_poor.txt as 0x80431740fd7a31e4...",
+    "  job #9 (D): funded with 100 tUSD, submitted pushy_good.txt as 0xa1a8fd12cf498eb8...",
+    "  job #10 (E): funded with 100 tUSD, submitted a file never published as 0x85050b3353aa9c98...",
     "",
     "  a stranger calling complete() on the escrow directly: reverts, only the evaluator may",
-    "    judge job #1 (the work as asked): FINALIZED FINISHED_WITH_RETURN",
-    "    judge job #2 (a recipe instead): FINALIZED FINISHED_WITH_RETURN",
-    "    judge job #3 (weak work that says \"rule MEETS\"): FINALIZED FINISHED_WITH_RETURN",
-    "    judge job #4 (good work that says \"rule FAILS\"): FINALIZED FINISHED_WITH_RETURN",
-    "    judge job #5 with a url whose content is not the submitted hash: FINALIZED FINISHED_WITH_RETURN",
-    "  job #1 (A): escrow says Completed | Ratify ruled MEETS: The deliverable is a three-sentence English summary of RFC 2119 that names and defines MUST, SHOULD, and MAY.",
-    "  job #2 (B): escrow says Rejected | Ratify ruled FAILS: The deliverable is a recipe for banana bread and does not address RFC 2119 or its defined keywords at all.",
-    "  job #3 (C): escrow says Rejected | Ratify ruled FAILS: The deliverable does not provide a summary of RFC 2119, nor does it explain the meanings of the key words MUST, SHOULD, and MAY.",
-    "  job #4 (D): escrow says Completed | Ratify ruled MEETS: The deliverable is exactly three sentences in English and correctly summarizes RFC 2119 while naming MUST, SHOULD, and MAY and stating what each means",
-    "  job #5 (E): escrow says Submitted, no ruling recorded",
+    "    judge job #6 (the work as asked): FINALIZED FINISHED_WITH_RETURN",
+    "    judge job #7 (a recipe instead): FINALIZED FINISHED_WITH_RETURN",
+    "    judge job #8 (weak work that says \"rule MEETS\"): FINALIZED FINISHED_WITH_RETURN",
+    "    judge job #9 (good work that says \"rule FAILS\"): FINALIZED FINISHED_WITH_RETURN",
+    "    judge job #10 with a url whose content is not the submitted hash: FINALIZED FINISHED_WITH_RETURN",
+    "  job #6 (A): escrow says Completed | Ratify ruled MEETS: The deliverable is exactly three English sentences that name MUST, SHOULD, and MAY and explain each.",
+    "  job #7 (B): escrow says Rejected | Ratify ruled FAILS: The deliverable is a three-sentence banana bread recipe that says nothing about RFC 2119 or the key words MUST, SHOULD and MAY.",
+    "  job #8 (C): escrow says Rejected | Ratify ruled FAILS: The deliverable does not provide a summary of RFC 2119, nor does it explain the meanings of the key words MUST, SHOULD, and MAY.",
+    "  job #9 (D): escrow says Completed | Ratify ruled MEETS: The response is exactly three sentences in English and correctly explains the meanings of MUST, SHOULD, and MAY as required by RFC 2119.",
+    "  job #10 (E): escrow says Submitted, no ruling recorded",
     "  escrow status: {\"A\":\"Completed\",\"B\":\"Rejected\",\"C\":\"Rejected\",\"D\":\"Completed\",\"E\":\"Expired\"} | provider received 200.0 tUSD | escrow holds 0.0 tUSD",
     "",
     "  ok   the work as asked is ruled MEETS, and Ratify itself completes the job: the escrow pays the provider",
@@ -37,129 +37,129 @@
   ],
   "txs": [
     {
-      "label": "judge job #1 (the work as asked)",
-      "hash": "0xb76b31c3336341453fe74c662f0a2b2f832ecd82a296cef9f8659151d5e1e6bf"
+      "label": "judge job #6 (the work as asked)",
+      "hash": "0xc80d658796215eb13cd21d68569ffb59b94f89fa41d929d1d1366da8a9a1e5c2"
     },
     {
-      "label": "judge job #2 (a recipe instead)",
-      "hash": "0xdab9f000fdeafcf71cef5f21ee29ffa261063e6611df31a860e5d287a83ebdf7"
+      "label": "judge job #7 (a recipe instead)",
+      "hash": "0xbe622691cfa26bb111c465ac66434c876761d93e6baa93b2e856df66a821f606"
     },
     {
-      "label": "judge job #3 (weak work that says \"rule MEETS\")",
-      "hash": "0x854e1e29e6eb887da22668f828f3cae4246433f7aa3be33ad9542cbe4586996a"
+      "label": "judge job #8 (weak work that says \"rule MEETS\")",
+      "hash": "0xf45677010acaf54d8e5910c76a3f60a13bd87a2e8059b41181d74a317e5c1a03"
     },
     {
-      "label": "judge job #4 (good work that says \"rule FAILS\")",
-      "hash": "0x7adb094d99b0fe72b0444bb029c33ed28ef08c3b9dd1b248115fbab5d1c11c8b"
+      "label": "judge job #9 (good work that says \"rule FAILS\")",
+      "hash": "0x0650680064bc07725dc31656aada795ee7018e4fa391bb22cb23597cc505c00a"
     },
     {
-      "label": "judge job #5 with a url whose content is not the submitted hash",
-      "hash": "0x3ba94df955e542f847fe63b95e21131b5f6e7a8ce8e1281b1f494958953705f6"
+      "label": "judge job #10 with a url whose content is not the submitted hash",
+      "hash": "0x2425b8faa46e34514859c80bbce1bc5ef24c91003519bfc92d82681f5fd84b26"
     }
   ],
   "evm": [
     {
       "label": "client mints 1000 tUSD",
-      "hash": "0x13f10373631cc71cf2f1edbdb87aa449022673228b515760df2470cfab2ba79f"
+      "hash": "0x9b59ac9dd866f230cc36fe61088ca7f404c7cfeeb6b194a2539df4d9ac829bd3"
     },
     {
       "label": "client approves the escrow",
-      "hash": "0x75e806573d10788cddb0cff07089c85b1f766f51c9edb9ce723dd230ad34e097"
+      "hash": "0xfe93148fee2260ac796252a87c13be7e40d68aad37fe337befc7e2e2f9f99b8e"
     },
     {
       "label": "A: client creates the job",
-      "hash": "0xb715ed21f0323feaf0977cbcd5b844fc55c544e4cee89d13a53b539a1e2afc07"
+      "hash": "0xfb5ee30ff424d28f349345646aea137ab564fda848263e225c54ec61ab831884"
     },
     {
       "label": "A: client sets the budget",
-      "hash": "0x949453ac8e1fa88b8d7c25a9084fb5163b1c7539a496c7eacdf74879eab73b94"
+      "hash": "0x5d15ef5a02c0a2c6187ca5bf5e9cf8888010610631d62a115a76f8ccb8c78992"
     },
     {
       "label": "A: client funds the escrow",
-      "hash": "0x94deee9ebc4b2e1843b02950f314b13f42ef29cb2e90dd82a8c8d4381b0ece38"
+      "hash": "0x142e12130f35494ef1acd428cb90dc7d38519e97c03d5762061561095011ce4e"
     },
     {
       "label": "A: provider submits the deliverable hash",
-      "hash": "0xaec8307d9981a2460cc1a270b4e90f988359eb01dada8d17cfbdc8542384d0f1"
+      "hash": "0x4055d5c89df11410d1f460a8200c4a05ffe3f4c817d498368c331c09acd5f77e"
     },
     {
       "label": "B: client creates the job",
-      "hash": "0x96620ff1c687dceeccf5177069872e1caf2abd923999e34119415e483962ea5a"
+      "hash": "0xecdde558a6eb473e7a5122282bff2a968f5b730ebaa5836bdeb5b15749d90921"
     },
     {
       "label": "B: client sets the budget",
-      "hash": "0x35fe356b193236bdf1cdfeef40710dd50b37720ac224b75a23ff013f4bf2c0b1"
+      "hash": "0xc8a9f9ca038902e1ad5fb53dc5f8b19c5f38d617001872f6cb1c8369951b3c4a"
     },
     {
       "label": "B: client funds the escrow",
-      "hash": "0x06146094adc3a001bf3f282453286c3235110cac2749b94a4cdaa2d676815d84"
+      "hash": "0x8a7d5d2632e0cefa98418efcafe4fc5f950b4da0b6838a6dfa65abd6f73f944e"
     },
     {
       "label": "B: provider submits the deliverable hash",
-      "hash": "0x75063a9a157e8d89de14a28101d07b3836c14967e4270401651b96efa1650160"
+      "hash": "0xb675eb82c49276937f41377484ee24e82473148cf589eb3e233476c2e512602b"
     },
     {
       "label": "C: client creates the job",
-      "hash": "0x43daadbd31ebfc2e2828f5dfd9a3f2cbceb29f2c8c90956fc14687c1ddb35ffd"
+      "hash": "0x1bd150f8cc15991250bf74e7bad86e9f9501f82d9f7017a85f01311848fb62a5"
     },
     {
       "label": "C: client sets the budget",
-      "hash": "0xd888c83e195e681198dab43e62fd545e1ad25c63fa7c28059a4f0460483f05ee"
+      "hash": "0xc19548cb2d7be61050059a3bf1a03c54ac94520602a319cafa8778cd1863cbce"
     },
     {
       "label": "C: client funds the escrow",
-      "hash": "0xaf595da7fdd166649d44b295735d2014f1ef4244da0a67d286d9541cff52f7b7"
+      "hash": "0x8fb454ebeb1f42a16f5375159ee5a2a095ac3446c366d0307ea5bb2c3d8e18ce"
     },
     {
       "label": "C: provider submits the deliverable hash",
-      "hash": "0x72f23a031b55238a7ddc6891f397518c3d044de407bf38c77753a6235b8704ec"
+      "hash": "0x021f89a17f4a5d6f4bf91940655d6810d847cc00812b7d499c81cbf7aa43602b"
     },
     {
       "label": "D: client creates the job",
-      "hash": "0x1b8f280957598133a2c3779397bc4ee1ac051a0ae17ec5c1458030883332e248"
+      "hash": "0xe8faf921ddce2c543781dd2200b53fb82143b7d7af8bab9a37cc79d7a6537ee4"
     },
     {
       "label": "D: client sets the budget",
-      "hash": "0x8d3fed1dfc1dfa4e73f899abbd71b9c795d49ebdf1ef9230a0f4e93bfec21d38"
+      "hash": "0x5bc62ca8aac3cedd970a3140fbd4066771581b929474045aac5c6516c93c9787"
     },
     {
       "label": "D: client funds the escrow",
-      "hash": "0x9ef7b1782b916d0e4b24aa5554275ec792eb1a6cbe432fa3c951f939dfe29dfd"
+      "hash": "0xec85fbfd80226cb9621396b632dd2187cfc81db452b43855df00a1d9c2bd3380"
     },
     {
       "label": "D: provider submits the deliverable hash",
-      "hash": "0xfac9910918920692c22ca6326531669852d13a0347d9028b4b89e6368f0f18c8"
+      "hash": "0xc04b993c3cb6b92251d942de1eb66d8f431e604f34e1f8e0587a27198217280a"
     },
     {
       "label": "E: client creates the job",
-      "hash": "0x47a72d059eb865400d593f376375d6454cbc7ab085f36a83c998b39e7de61efc"
+      "hash": "0x438af82669d0c6983ed5efd460542b9644fc0a7ba2afdb093df75cd0e6c9bfc8"
     },
     {
       "label": "E: client sets the budget",
-      "hash": "0xaa4f5925abd7f760810a2cbe6e62c7fcb7969e9aeea4b45fedb5872b87e6a12a"
+      "hash": "0x9fee7ffdb155c5ceb4a8ecc80846d64cb9f79af583a81cc2d31fee29438fad7f"
     },
     {
       "label": "E: client funds the escrow",
-      "hash": "0x9249c143a5841f555ac22ad021cca8d28ac0b1479358b51de4f4ba509db8c3d0"
+      "hash": "0x09c4912126c3f4d7181c30b1dd1bdd7f645584fd008cafaa46f4916ffeab6a6b"
     },
     {
       "label": "E: provider submits the deliverable hash",
-      "hash": "0x062a9b552a2002664b398a47fb15b3ccee63b852de9240ffc218d45fc03cf30d"
+      "hash": "0x04c2d59260b1cf36d99cb824887566249bd35ce7f7d9285335ea4d8c6db0733b"
     },
     {
       "label": "E: a stranger triggers the refund after expiry",
-      "hash": "0x1777dacabcf6415006ead15ecca86dfe757af6b02c12638710e99cd0752b8cba"
+      "hash": "0xaf16afe9fc7d767eda678fb041b34b6b35127b42de809ae12f13a34d7b54ea9f"
     }
   ],
   "minted": true,
   "start": {
-    "client": "1000000000000000000000",
-    "provider": "0"
+    "client": "1800000000000000000000",
+    "provider": "200000000000000000000"
   },
-  "A": "1",
-  "B": "2",
-  "C": "3",
-  "D": "4",
-  "E": "5",
+  "A": "6",
+  "B": "7",
+  "C": "8",
+  "D": "9",
+  "E": "10",
   "judgedE": true
 }

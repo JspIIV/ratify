@@ -1,0 +1,4 @@
+[
+  { "key": "testusd", "label": "TestUSD", "file": "TestUSD.sol", "name": "TestUSD" },
+  { "key": "agenticcommerce", "label": "AgenticCommerce (ERC-8183)", "file": "AgenticCommerce.sol", "name": "AgenticCommerce" }
+]

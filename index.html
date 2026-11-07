@@ -56,6 +56,11 @@
   footer{color:var(--faint);font-size:13px;border-top:1px solid var(--line);padding-top:18px;margin-top:34px}
   textarea{width:100%;min-height:72px;font:inherit;background:#0d1017;color:var(--ink);border:1px solid var(--line);border-radius:10px;padding:10px}
   .steps{counter-reset:s}
+  .track{display:flex;gap:6px;margin:12px 0 4px;flex-wrap:wrap}
+  .track span{flex:1;min-width:110px;text-align:center;font-size:12px;padding:7px 6px;border-radius:8px;border:1px solid var(--line);color:var(--faint)}
+  .track span.on{border-color:var(--accent);color:var(--ink)}
+  .track span.done{border-color:var(--clear);color:var(--clear)}
+  .ref td,.ref th{font-size:13px;vertical-align:top}
 </style>
 </head>
 <body>
@@ -80,7 +85,9 @@
 
   <h2>Try the whole cycle with one wallet</h2>
   <section>
-    <p class="muted" style="margin-top:0">You will be the client and the provider. Each step is one or two wallet transactions on GenLayer Chain. Test dollars are free.</p>
+    <p class="muted" style="margin-top:0">You will be the client and the provider. Each step is one or two wallet transactions on GenLayer Chain.
+      Test dollars (tUSD) are a token made for this demo: anyone may mint up to 1,000 at a time, as often as they like. They never expire and are worth nothing.</p>
+    <div class="track" id="track"><span data-s="0">Open</span><span data-s="1">Funded</span><span data-s="2">Submitted</span><span data-s="3">Ratify ruled</span><span data-s="4">Settled</span></div>
     <div class="actions"><button id="mint">1. Get 100 test dollars</button><span class="muted" id="bal"></span></div>
     <label>2. The job brief (it is the only bar the work is judged against)</label>
     <textarea id="brief">Write a summary of RFC 2119 in exactly three sentences, in English. It must name the key words MUST, SHOULD and MAY and say what each one means.</textarea>
@@ -99,6 +106,30 @@
   </section>
 
   <section id="result" style="display:none"></section>
+
+  <h2>The contracts</h2>
+  <section>
+    <div class="kv" style="margin-top:0">
+      <div>Ratify</div><div class="mono"><a id="aRatify" target="_blank" rel="noopener"></a> <span class="muted">Intelligent Contract on GenLayer Bradbury</span></div>
+      <div>ERC-8183 escrow</div><div class="mono"><a id="aEscrow" target="_blank" rel="noopener"></a> <span class="muted">EVM, GenLayer Chain 4221, source evm/AgenticCommerce.sol</span></div>
+      <div>Test dollar</div><div class="mono"><a id="aToken" target="_blank" rel="noopener"></a> <span class="muted">EVM, GenLayer Chain 4221, source evm/TestUSD.sol</span></div>
+    </div>
+    <p class="muted">GenLayer Chain's explorer cannot verify source yet, so <code>node scripts/verify_evm.mjs</code> in the repository recompiles
+      both EVM contracts and compares them byte for byte with the code on chain. <code>node scripts/verify.mjs</code> does the same for Ratify's source and its transactions.</p>
+  </section>
+
+  <h2>What runs where</h2>
+  <section>
+    <table class="ref"><thead><tr><th>Call</th><th>Who</th><th>How it is decided</th></tr></thead><tbody>
+      <tr><td class="mono">escrow.createJob, setBudget, fund</td><td>client</td><td>Plain EVM on GenLayer Chain. The brief is fixed here, before the provider accepts.</td></tr>
+      <tr><td class="mono">escrow.submit(jobId, sha256)</td><td>provider</td><td>Plain EVM. Commits the hash of the work; the work itself can live anywhere.</td></tr>
+      <tr><td class="mono">ratify.judge(jobId, url)</td><td>anybody</td><td>Deterministic first: the job must name Ratify, be Submitted, and have a brief Ratify can read whole. Then a GenLayer round: every validator fetches the url, checks the sha256 in code, and rules. The validators must agree on the verdict.</td></tr>
+      <tr><td class="mono">escrow.complete / reject</td><td>Ratify itself</td><td>Sent through Ratify's Ghost when the verdict is final: after GenLayer's appeal window, where a contested ruling is re-run by a larger set of validators. Only Ratify can send it.</td></tr>
+      <tr><td class="mono">ratify.resend(jobId)</td><td>anybody</td><td>Deterministic: repeats a recorded verdict if its call did not land. No model.</td></tr>
+      <tr><td class="mono">escrow.claimRefund(jobId)</td><td>anybody</td><td>Plain EVM, after expiry: a job nobody judged is never stuck.</td></tr>
+    </tbody></table>
+    <p class="muted">The verdict, the job, the deliverable hash and the attestation sent to the escrow are agreed by the round. The one sentence of reasoning shown with a ruling is the leading validator's own words.</p>
+  </section>
 
   <h2>Jobs Ratify has ruled on</h2>
   <section id="board"><div class="muted">Reading from chain...</div></section>
@@ -124,7 +155,7 @@ import { createClient } from "https://esm.sh/genlayer-js@2.0.0-rc.2";
 import { testnetBradbury } from "https://esm.sh/genlayer-js@2.0.0-rc.2/chains";
 import { BrowserProvider, JsonRpcProvider, Contract, AbiCoder, parseUnits, formatUnits } from "https://esm.sh/ethers@6.13.4";
 
-const RATIFY = "0x926985C53a801A1B5732930A5322fEE8918EbfAA";
+const RATIFY = "0xA0c6d7551a3953BB55dB067308C9280b4dff3b8e";
 const ESCROW = "0x0bB04345087986195c493D715EED5aaCBEcCB4e8";
 const TOKEN = "0x1f8D72793a8265f903AD35eD4ea5A73aE085b6E1";
 const RPC = "https://rpc-bradbury.genlayer.com";
@@ -173,6 +204,12 @@ const short = (a) => (a ? `${String(a).slice(0, 6)}...${String(a).slice(-4)}` : 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 const say = (t) => { $("status").textContent = t; };
 $("exp").href = EXPLORER + "/address/" + RATIFY;
+const CHAIN_EXPLORER = "https://scan.testnet-chain.genlayer.com";
+for (const [id, addr, base] of [["aRatify", RATIFY, EXPLORER], ["aEscrow", ESCROW, CHAIN_EXPLORER], ["aToken", TOKEN, CHAIN_EXPLORER]]) { $(id).href = base + "/address/" + addr; $(id).textContent = addr; }
+function track(stage) {
+  document.querySelectorAll("#track span").forEach((el) => { const n = Number(el.dataset.s); el.className = n < stage ? "done" : n === stage ? "on" : ""; });
+}
+track(-1);
 
 function pickProvider() {
   const e = window.ethereum; if (!e) return null;
@@ -281,10 +318,11 @@ async function lookup() {
     const [j, d, r] = await Promise.all([escrowRead.jobCore(id), escrowRead.jobDescription(id),
       reader.readContract({ address: RATIFY, functionName: "ruling", args: [BigInt(id)] }).then(JSON.parse)]);
     const s = STATUS[Number(j.status)];
+    track(s === "Open" ? 0 : s === "Funded" ? 1 : s === "Submitted" ? (r.judged === false ? 2 : 3) : 5);
     const cls = { Completed: "CLEAR", Rejected: "DANGER", Expired: "CAUTION" }[s] || "UNREVIEWED";
     const box = $("result"); box.style.display = "block";
     box.innerHTML = `<div class="row"><span class="verdict v-${cls}">${esc(s)}</span>${r.judged === false ? '<span class="muted">not ruled yet</span>' : `<span class="gate ${r.verdict === "MEETS" ? "yes" : "no"}">Ratify: ${esc(r.verdict)}</span>`}</div>
-      ${r.why ? `<div class="why">${esc(r.why)}</div>` : ""}
+      ${r.why ? `<div class="why">${esc(r.why)} <span class="muted">(the leading validator's words)</span></div>` : ""}
       ${(r.missed || []).length ? `<div class="flags" style="margin-top:10px">${r.missed.map((m) => `<span class="flag">${esc(m)}</span>`).join("")}</div>` : ""}
       <div class="kv">
         <div>Brief</div><div>${esc(d)}</div>
@@ -292,7 +330,7 @@ async function lookup() {
         <div>Provider</div><div class="mono">${esc(j.provider)}</div>
         <div>Evaluator</div><div class="mono">${esc(j.evaluator)}${j.evaluator.toLowerCase() === RATIFY.toLowerCase() ? ' <span class="muted">(Ratify)</span>' : ""}</div>
         <div>Budget</div><div>${esc(formatUnits(j.budget, 18))} tUSD</div>
-        <div>Deliverable sha256</div><div class="mono">${esc(j.deliverable)}</div>
+        <div>Deliverable sha256</div><div class="mono">${esc(j.deliverable)} <span class="muted">(committed by the provider; the work at the url must hash to this)</span></div>
         ${r.url ? `<div>Judged from</div><div class="mono"><a href="${esc(r.url)}" target="_blank" rel="noopener">${esc(r.url)}</a></div>` : ""}
       </div>`;
   } catch (e) { say("Could not read job: " + errText(e)); }

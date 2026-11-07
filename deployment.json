@@ -11,11 +11,16 @@
     "tx": "0xe100b427e6af90d92e32293d1f92761ca7b3db0b62566aaf817c41824f22bb6f",
     "compiler": "0.8.36+commit.8a079791.Emscripten.clang"
   },
-  "ratify": {
+  "address": "0xA0c6d7551a3953BB55dB067308C9280b4dff3b8e",
+  "tx": "0x3a14b457970fbe38bb137b47b50aaac0ea59702df09cf71f68a081cf68a0bb41",
+  "deployed_at": "2026-11-07T15:03:00.757Z",
+  "ratify_first": {
     "address": "0x926985C53a801A1B5732930A5322fEE8918EbfAA",
-    "tx": "0x183e876459eea344fadf8a94f62996942df804b89eb14a9dcdc686a04e7baa84"
+    "tx": "0x183e876459eea344fadf8a94f62996942df804b89eb14a9dcdc686a04e7baa84",
+    "why_replaced": "judged on a brief silently cut at 4000 characters; now a brief that long is refused"
   },
-  "address": "0x926985C53a801A1B5732930A5322fEE8918EbfAA",
-  "tx": "0x183e876459eea344fadf8a94f62996942df804b89eb14a9dcdc686a04e7baa84",
-  "deployed_at": "2026-11-07T10:54:01.363Z"
+  "ratify": {
+    "address": "0xA0c6d7551a3953BB55dB067308C9280b4dff3b8e",
+    "tx": "0x3a14b457970fbe38bb137b47b50aaac0ea59702df09cf71f68a081cf68a0bb41"
+  }
 }

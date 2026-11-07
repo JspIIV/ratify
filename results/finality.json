@@ -1,7 +1,7 @@
 {
-  "checked_at": "2026-11-07T11:09:15.280Z",
-  "contract": "0x926985C53a801A1B5732930A5322fEE8918EbfAA",
-  "source_sha256": "1bb2e048a645f94cc400fd6ae5f272c6f390032dfc3db187bf8982d91b5c498b",
+  "checked_at": "2026-11-07T15:39:55.215Z",
+  "contract": "0xA0c6d7551a3953BB55dB067308C9280b4dff3b8e",
+  "source_sha256": "2ad19a72f1125fb8267aa294b1103322b9c2d97d83d8e9c8834b285d88b75343",
   "source_matches_chain": true,
   "finalized": 6,
   "accepted": 0,

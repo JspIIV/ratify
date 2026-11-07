@@ -19,6 +19,11 @@ The url carries no trust: content that does not hash to the submitted deliverabl
 swap the work after submitting it. The description was on chain before the provider accepted the job and is the
 only bar. Text inside the deliverable that addresses reviewers is untrusted. Each job is judged once; resend(job_id)
 repeats the same verdict, with no model, if its message was not delivered.
+
+Ratify acts only on a final verdict. GenLayer's own appeal window comes first: a contested ruling is re-run by a larger
+set of validators before it is final, and only then is the escrow called. The verdict is bound across validators, and
+so are the job, the deliverable hash and the attestation sent on chain. The one sentence of reasoning kept on the
+record is the leader's own words: it explains the verdict, it is not itself agreed.
 """
 
 import genlayer as gl
@@ -155,7 +160,9 @@ class Ratify(gl.contract.Contract):
             return json.dumps({"ok": False, "error": "this job names another evaluator"})
         if job["status"] != SUBMITTED:
             return json.dumps({"ok": False, "error": "only a submitted job is judged"})
-        description = str(Escrow(gl.Address(self.escrow)).view().jobDescription(jid))[:MAX_DESCRIPTION]
+        description = str(Escrow(gl.Address(self.escrow)).view().jobDescription(jid))
+        if not description.strip() or len(description) > MAX_DESCRIPTION:
+            return json.dumps({"ok": False, "error": "the brief is empty or longer than one round reads whole; it is never cut"})
         digest = job["deliverable"]
 
         def lead() -> dict:
